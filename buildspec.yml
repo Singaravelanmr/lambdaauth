@@ -6,11 +6,7 @@ phases:
       nodejs: 14
   build:
     commands:
-      - echo Running build commands from package.json...
       - npm install
   post_build:
     commands:
-      - mkdir build
-      - zip -r auth.zip build/
-      - echo Uploading zip file to AWS Lambda...
       - aws lambda update-function-code --function-name auth --zip-file fileb://auth.zip
