@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - npm ci
+  build:
+    commands:
+      - echo Running build commands from package.json...
+      - npm run build
+  post_build:
+    commands:
+      - echo Running tests...
+      - npm test
+      - echo Packaging artifacts...
+      - zip -r my-app.zip build/
+      - echo Uploading zip file to AWS Lambda...
+      - aws lambda update-function-code --function-name auth --zip-file fileb://my-app.zip
+artifacts:
+  files:
+    - my-app.zip
