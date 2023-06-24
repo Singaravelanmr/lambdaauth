@@ -9,4 +9,5 @@ phases:
       - npm install
   post_build:
     commands:
+      - zip -r auth.zip .
       - aws lambda update-function-code --function-name auth --zip-file fileb://auth.zip
