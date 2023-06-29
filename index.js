@@ -11,7 +11,7 @@ export const handler = async (event, context) => {
 
   const customKey = event.httpMethod + " " + event.resource;
   const reqBody = Object.keys(event).length > 0 ? JSON.parse(event.body) : event;
-  //   const pathParameter = event?.pathParameters?.i
+  //   const pathParameter = event?.pathParameters?
 
   try {
     switch (customKey) {
